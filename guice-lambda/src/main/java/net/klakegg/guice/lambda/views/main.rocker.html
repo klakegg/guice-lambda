@@ -1,0 +1,22 @@
+@import java.util.Map
+@import javax.lang.model.element.Name
+@import javax.lang.model.type.ExecutableType
+
+@args(String pkgName, String clsName, String targetName, Map<Name, ExecutableType> methods)
+
+package @pkgName;
+
+import net.klakegg.guice.lambda.LambdaInjector;
+
+public class @targetName @{
+
+    private final LambdaInjector<@clsName> injector = LambdaInjector.with(@clsName .class);
+
+    @for ((name, method) : methods) {
+    public @method.getReturnType() @name (@for ((i, param) : method.getParameterTypes()) {@if (i.index() != 0) {, }@param v@i.index()})@if (method.getThrownTypes().size() > 0) {
+        throws @for((i, t) : method.getThrownTypes()) {@if (i.index() != 0) {, }@t}} @{
+        @if (!method.getReturnType().toString().equals("void")) {return }injector.getHandler().@name (@for ((i, p) : method.getParameterTypes()) {@if (i.index() != 0) {, }v@i.index()});
+    @}
+
+    }
+@}
