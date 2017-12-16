@@ -5,7 +5,7 @@
     <parent>
         <artifactId>guice-lambda-parent</artifactId>
         <groupId>net.klakegg.guice</groupId>
-        <version>1.0-SNAPSHOT</version>
+        <version>0.7.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -17,7 +17,6 @@
         <dependency>
             <groupId>com.google.inject</groupId>
             <artifactId>guice</artifactId>
-            <version>4.1.0</version>
         </dependency>
     </dependencies>
 
